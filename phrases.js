@@ -9,5 +9,7 @@ const phrases = [
   "You're influencing reality.",
   "This square has feelings now.",
   "Keep going.",
-  "The prophecy continues."
+  "The prophecy continues.",
+  "fuck you levi and your stupid ripoff of my ai slop"
 ];
+
