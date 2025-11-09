@@ -7,27 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Discovered Phrases</h2>
-    <ul id="phrase-list"></ul>
-  </div>
-
-  <div class="main-content">
-    <h1 id="heading">Welcome to the Glowing Square!</h1>
-    <button class="square" aria-label="Decorative glowing square">
-      <span class="sr-only">Glowing white square — hover or focus to see glow</span>
-    </button>
-    <div id="click-count">Clicks: 0</div>
-  </div>
+  <h1 id="heading">Welcome to the Glowing Square!</h1>
+  <button class="square" aria-label="Decorative glowing square">
+    <span class="sr-only">Glowing white square — hover or focus to see glow</span>
+  </button>
+  <div id="click-count">Clicks: 0</div>
 
   <script src="phrases.js"></script>
   <script>
     const square = document.querySelector('.square');
     const heading = document.getElementById('heading');
     const clickCountDiv = document.getElementById('click-count');
-    const phraseList = document.getElementById('phrase-list');
     let clicks = 0;
-    const discovered = new Set();
 
     function randomColor() {
       const r = Math.floor(Math.random() * 256);
@@ -43,17 +34,7 @@
     square.addEventListener('click', () => {
       clicks++;
       clickCountDiv.textContent = `Clicks: ${clicks}`;
-
-      const phrase = randomPhrase();
-      heading.textContent = phrase;
-
-      // Add phrase to sidebar if not discovered
-      if (!discovered.has(phrase)) {
-        discovered.add(phrase);
-        const li = document.createElement('li');
-        li.textContent = phrase;
-        phraseList.appendChild(li);
-      }
+      heading.textContent = randomPhrase();
 
       const newColor = randomColor();
       square.style.background = newColor;
