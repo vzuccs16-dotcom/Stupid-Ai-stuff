@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glowing Square Fun</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 id="heading">Welcome to the Glowing Square!</h1>
+  <button class="square" aria-label="Decorative glowing square">
+    <span class="sr-only">Glowing white square — hover or focus to see glow</span>
+  </button>
+  <div id="click-count">Clicks: 0</div>
+
+  <script src="phrases.js"></script>
+  <script>
+    const square = document.querySelector('.square');
+    const heading = document.getElementById('heading');
+    const clickCountDiv = document.getElementById('click-count');
+    let clicks = 0;
+
+    function randomColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function randomPhrase() {
+      return phrases[Math.floor(Math.random() * phrases.length)];
+    }
+
+    square.addEventListener('click', () => {
+      clicks++;
+      clickCountDiv.textContent = `Clicks: ${clicks}`;
+      heading.textContent = randomPhrase();
+
+      const newColor = randomColor();
+      square.style.background = newColor;
+      document.documentElement.style.setProperty('--glow-color', newColor);
+    });
+  </script>
+</body>
+</html>
