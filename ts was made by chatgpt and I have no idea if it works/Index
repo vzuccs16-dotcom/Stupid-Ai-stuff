@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Square Tracker</title>
+
+  <!-- Link external CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="sidebar">
+  <h2>Phrases Seen</h2>
+  <div id="history"></div>
+</div>
+
+<div id="main">
+  <div id="phrase"></div>
+  <div id="square"></div>
+  <div id="counter">Clicks: 0</div>
+</div>
+
+<!-- Load phrases first -->
+<script src="phrases.js"></script>
+
+<script>
+  let clickCount = 0;
+  const seen = new Set();
+
+  const square = document.getElementById("square");
+  const phraseText = document.getElementById("phrase");
+  const counterText = document.getElementById("counter");
+  const historyBox = document.getElementById("history");
+
+  function randomColor(){
+    return `hsl(${Math.floor(Math.random()*360)}, 80%, 60%)`;
+  }
+
+  square.addEventListener("click", () => {
+    const newColor = randomColor();
+    square.style.background = newColor;
+    document.documentElement.style.setProperty("--glow-color", newColor);
+
+    const chosen = phrases[Math.floor(Math.random()*phrases.length)];
+    phraseText.textContent = chosen;
+
+    clickCount++;
+    counterText.textContent = `Clicks: ${clickCount}`;
+
+    if (!seen.has(chosen)) {
+      seen.add(chosen);
+      const entry = document.createElement("div");
+      entry.textContent = chosen;
+      historyBox.appendChild(entry);
+      historyBox.scrollTop = historyBox.scrollHeight;
+    }
+  });
+</script>
+
+</body>
+</html>
