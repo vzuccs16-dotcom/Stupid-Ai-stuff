@@ -10,6 +10,9 @@ const phrases = [
   "This square has feelings now.",
   "Keep going.",
   "The prophecy continues.",
-  "fuck you levi and your stupid ripoff of my ai slop"
+  "fuck you levi and your stupid ripoff of my ai slop",
+  "i hate you levi you so mean",
+  "can I get a kiss?"
 ];
+
 
