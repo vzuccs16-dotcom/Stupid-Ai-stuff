@@ -60,7 +60,7 @@ body {
 
 #collapse-btn {
   position: fixed;
-  top: 1rem;
+  top: 0rem;
   left: 220px;
   z-index: 1100;
   padding: 0.3rem 0.5rem;
@@ -189,6 +189,7 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #555 #111;
 }
+
 
 
 
