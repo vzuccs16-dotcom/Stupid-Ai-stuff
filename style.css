@@ -166,30 +166,29 @@ h1 {
 }
 /* Scrollbar styling for sidebar */
 .sidebar::-webkit-scrollbar {
-  width: 10px;
+  width: 10px;               /* Width of scrollbar */
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: #111;       /* Track background */
+  background: #111;           /* Track matches sidebar */
   border-radius: 5px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #888;       /* Gray thumb */
+  background: #555;           /* Gray thumb */
   border-radius: 5px;
-  border: 2px solid #111; /* Padding effect */
+  border: 2px solid #111;    /* Adds padding effect */
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #aaa;       /* Lighter gray on hover */
+  background: #777;           /* Slightly lighter on hover */
 }
 
 /* Firefox scrollbar support */
 .sidebar {
   scrollbar-width: thin;
-  scrollbar-color: #888 #111;
+  scrollbar-color: #555 #111;
 }
-
 
 
 
