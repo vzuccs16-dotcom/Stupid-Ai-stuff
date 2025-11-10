@@ -3,60 +3,98 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Square Tracker</title>
-
-  <!-- Link external CSS -->
+  <title>Glowing Gradient Square</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="sidebar" id="sidebar">
+    <h2>Discovered Phrases</h2>
+    <ul id="phrase-list"></ul>
+    <button id="collapse-btn">Collapse</button>
+  </div>
 
-<div id="sidebar">
-  <h2>Phrases Seen</h2>
-  <div id="history"></div>
-</div>
+  <div class="main-content">
+    <h1 id="heading">Welcome to the Glowing Square!</h1>
+    <button class="square" aria-label="Decorative glowing square">
+      <span class="sr-only">Glowing gradient square — hover or focus to see glow</span>
+    </button>
+    <div id="click-count">Clicks: 0</div>
+  </div>
 
-<div id="main">
-  <div id="phrase"></div>
-  <div id="square"></div>
-  <div id="counter">Clicks: 0</div>
-</div>
+  <script src="phrases.js"></script>
+  <script>
+    const square = document.querySelector('.square');
+    const heading = document.getElementById('heading');
+    const clickCountDiv = document.getElementById('click-count');
+    const phraseList = document.getElementById('phrase-list');
+    const sidebar = document.getElementById('sidebar');
+    const collapseBtn = document.getElementById('collapse-btn');
 
-<!-- Load phrases first -->
-<script src="phrases.js"></script>
+    let clicks = 0;
+    const discovered = new Set();
 
-<script>
-  let clickCount = 0;
-  const seen = new Set();
-
-  const square = document.getElementById("square");
-  const phraseText = document.getElementById("phrase");
-  const counterText = document.getElementById("counter");
-  const historyBox = document.getElementById("history");
-
-  function randomColor(){
-    return `hsl(${Math.floor(Math.random()*360)}, 80%, 60%)`;
-  }
-
-  square.addEventListener("click", () => {
-    const newColor = randomColor();
-    square.style.background = newColor;
-    document.documentElement.style.setProperty("--glow-color", newColor);
-
-    const chosen = phrases[Math.floor(Math.random()*phrases.length)];
-    phraseText.textContent = chosen;
-
-    clickCount++;
-    counterText.textContent = `Clicks: ${clickCount}`;
-
-    if (!seen.has(chosen)) {
-      seen.add(chosen);
-      const entry = document.createElement("div");
-      entry.textContent = chosen;
-      historyBox.appendChild(entry);
-      historyBox.scrollTop = historyBox.scrollHeight;
+    function randomColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r},${g},${b})`;
     }
-  });
-</script>
 
+    function randomGradient() {
+      const color1 = randomColor();
+      const color2 = randomColor();
+      return `linear-gradient(135deg, ${color1}, ${color2})`;
+    }
+
+    function gradientAverageColor(gradient) {
+      // Extract colors from gradient string and average
+      const match = gradient.match(/rgb\((\d+),(\d+),(\d+)\)/g);
+      if (!match || match.length < 2) return '#fff';
+      let r = 0, g = 0, b = 0;
+      match.forEach(color => {
+        const parts = color.match(/\d+/g);
+        r += parseInt(parts[0]);
+        g += parseInt(parts[1]);
+        b += parseInt(parts[2]);
+      });
+      r = Math.floor(r / match.length);
+      g = Math.floor(g / match.length);
+      b = Math.floor(b / match.length);
+      return `rgb(${r},${g},${b})`;
+    }
+
+    function randomPhrase() {
+      return phrases[Math.floor(Math.random() * phrases.length)];
+    }
+
+    square.addEventListener('click', () => {
+      clicks++;
+      clickCountDiv.textContent = `Clicks: ${clicks}`;
+
+      const phrase = randomPhrase();
+      heading.textContent = phrase;
+
+      // Add phrase to sidebar if not discovered
+      if (!discovered.has(phrase)) {
+        discovered.add(phrase);
+        const li = document.createElement('li');
+        li.textContent = phrase;
+        phraseList.appendChild(li);
+      }
+
+      // Set gradient and adjust glow
+      const gradient = randomGradient();
+      square.style.background = gradient;
+      const avgColor = gradientAverageColor(gradient);
+      document.documentElement.style.setProperty('--glow-color', avgColor);
+    });
+
+    // Collapse sidebar
+    collapseBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? 'Expand' : 'Collapse';
+    });
+  </script>
 </body>
 </html>
+
