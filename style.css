@@ -29,7 +29,7 @@ body {
   bottom: 0;
   width: 220px;
   background: #111;
-  color: #fff;
+  color: #111;
   padding: 1rem;
   box-sizing: border-box;
   overflow-y: auto;
@@ -189,6 +189,7 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #7af #111;
 }
+
 
 
 
