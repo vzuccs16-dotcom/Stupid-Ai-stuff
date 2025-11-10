@@ -7,11 +7,11 @@
   --shadow-base: 0 0 0 rgba(0,0,0,0);
 }
 
-html,body{
-  height:100%;
-  margin:0;
-  background:var(--bg);
-  color:var(--square);
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--square);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
@@ -19,6 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .sidebar {
@@ -59,8 +60,8 @@ body {
 
 #collapse-btn {
   position: fixed;
-  left: 220px;
   top: 1rem;
+  left: 220px;
   z-index: 1100;
   padding: 0.3rem 0.5rem;
   font-size: 0.9rem;
@@ -72,8 +73,8 @@ body {
   transition: left 0.3s ease;
 }
 
-.sidebar.collapsed + #collapse-btn {
-  left: 0.5rem;
+#collapse-btn.collapsed {
+  left: 0;
 }
 
 .main-content {
@@ -82,13 +83,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: 220px;
   padding: 2rem;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar.collapsed ~ .main-content {
-  margin-left: 0;
 }
 
 h1 {
@@ -97,11 +92,11 @@ h1 {
 }
 
 .square {
-  width:var(--size);
-  height:var(--size);
-  background:var(--square);
-  border-radius:12px;
-  display:block;
+  width: var(--size);
+  height: var(--size);
+  background: var(--square);
+  border-radius: 12px;
+  display: block;
   box-shadow: var(--shadow-base);
   transition:
     transform var(--transition-duration) cubic-bezier(.2,.9,.3,1),
