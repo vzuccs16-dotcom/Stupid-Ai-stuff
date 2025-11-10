@@ -13,13 +13,19 @@ html,body{
   background:var(--bg);
   color:var(--square);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+}
+
+body {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 220px;
   background: #111;
   color: #fff;
@@ -28,6 +34,7 @@ html,body{
   overflow-y: auto;
   border-right: 2px solid #222;
   transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
 .sidebar.collapsed {
@@ -51,7 +58,10 @@ html,body{
 }
 
 #collapse-btn {
-  margin-top: 1rem;
+  position: fixed;
+  left: 220px;
+  top: 1rem;
+  z-index: 1100;
   padding: 0.3rem 0.5rem;
   font-size: 0.9rem;
   cursor: pointer;
@@ -59,17 +69,26 @@ html,body{
   border: none;
   color: #fff;
   border-radius: 4px;
+  transition: left 0.3s ease;
+}
+
+.sidebar.collapsed + #collapse-btn {
+  left: 0.5rem;
 }
 
 .main-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-left: 220px;
   padding: 2rem;
-  box-sizing: border-box;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 0;
 }
 
 h1 {
@@ -150,4 +169,3 @@ h1 {
   font-size: 1.2rem;
   margin-top: 1rem;
 }
-
