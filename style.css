@@ -39,7 +39,7 @@ body {
 }
 
 .sidebar.collapsed {
-  transform: translateX(-220px);
+  transform: translateX(-230px);
 }
 
 .sidebar h2 {
@@ -175,7 +175,7 @@ h1 {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #7af, #0af); /* Neon gradient thumb */
+  background: linear-gradient(180deg, #0af, #0af); /* Neon gradient thumb */
   border-radius: 5px;
   border: 2px solid #111;   /* Gives padding effect */
 }
@@ -189,5 +189,6 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #7af #111;
 }
+
 
 
