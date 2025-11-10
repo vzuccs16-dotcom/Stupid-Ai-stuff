@@ -113,5 +113,7 @@ const phrases = [
   "I drink and I know things",
   "Wakanda forever",
   "May the Force be with you",
-  "I’m Batman"
+  "I’m Batman",
+  "Hi joel, I hope you give me 10000000 roblo"
 ];
+
