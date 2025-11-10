@@ -10,8 +10,9 @@
   <div class="sidebar" id="sidebar">
     <h2>Discovered Phrases</h2>
     <ul id="phrase-list"></ul>
-    <button id="collapse-btn">Collapse</button>
   </div>
+
+  <button id="collapse-btn">Collapse</button>
 
   <div class="main-content">
     <h1 id="heading">Welcome to the Glowing Square!</h1>
@@ -47,7 +48,6 @@
     }
 
     function gradientAverageColor(gradient) {
-      // Extract colors from gradient string and average
       const match = gradient.match(/rgb\((\d+),(\d+),(\d+)\)/g);
       if (!match || match.length < 2) return '#fff';
       let r = 0, g = 0, b = 0;
@@ -74,7 +74,6 @@
       const phrase = randomPhrase();
       heading.textContent = phrase;
 
-      // Add phrase to sidebar if not discovered
       if (!discovered.has(phrase)) {
         discovered.add(phrase);
         const li = document.createElement('li');
@@ -82,14 +81,13 @@
         phraseList.appendChild(li);
       }
 
-      // Set gradient and adjust glow
       const gradient = randomGradient();
       square.style.background = gradient;
       const avgColor = gradientAverageColor(gradient);
       document.documentElement.style.setProperty('--glow-color', avgColor);
     });
 
-    // Collapse sidebar
+    // Collapse/expand sidebar
     collapseBtn.addEventListener('click', () => {
       sidebar.classList.toggle('collapsed');
       collapseBtn.textContent = sidebar.classList.contains('collapsed') ? 'Expand' : 'Collapse';
@@ -97,4 +95,3 @@
   </script>
 </body>
 </html>
-
