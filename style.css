@@ -164,3 +164,30 @@ h1 {
   font-size: 1.2rem;
   margin-top: 1rem;
 }
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 10px;               /* Width of scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #111;           /* Track background */
+  border-radius: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7af, #0af); /* Neon gradient thumb */
+  border-radius: 5px;
+  border: 2px solid #111;   /* Gives padding effect */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0ff, #7af); /* Glow on hover */
+}
+
+/* Firefox scrollbar support */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #7af #111;
+}
+
+
